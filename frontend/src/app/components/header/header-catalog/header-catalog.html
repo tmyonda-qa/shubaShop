@@ -1,0 +1,11 @@
+<div class="header-catalog">
+  <div class="container">
+    <nav class="catalog-nav">
+      @for (cat of categories; track cat.slug) {
+        <a routerLink="/catalog" [queryParams]="getCategoryParams(cat.slug)" class="catalog-nav__item">
+          {{cat.label}}
+        </a>
+      }
+    </nav>
+  </div>
+</div>

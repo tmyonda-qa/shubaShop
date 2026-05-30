@@ -1,0 +1,41 @@
+<div class="header-top">
+  <div class="container">
+    <div class="header-top__inner">
+
+      <a href="tel:+380123456789" class="header-top__phone">
+        <i class="fas fa-phone"></i>
+        +38 (012) 345-67-89
+      </a>
+
+      <nav class="header-top__nav">
+        <a routerLink="/about">Про компанію</a>
+        <a routerLink="/delivery">Доставка та оплата</a>
+        <a routerLink="/returns">Обмін та повернення</a>
+        <a routerLink="/blog">Блог</a>
+        <a routerLink="/contacts">Контакти</a>
+      </nav>
+
+      <div class="header-top__socials">
+        <a href="viber://chat?number=%2B380123456789" class="social-icon viber" title="Viber">
+          <i class="fab fa-viber"></i>
+        </a>
+        <a href="https://t.me/your_telegram" target="_blank" class="social-icon telegram" title="Telegram">
+          <i class="fab fa-telegram"></i>
+        </a>
+      </div>
+
+      <div class="header-top__auth">
+        @if (auth.isLoggedIn()) {
+          @if (auth.isAdmin()) {
+            <a routerLink="/admin/orders" class="btn-admin">Адмін панель</a>
+          }
+          <button (click)="logout()" class="btn-logout">Вийти</button>
+        } @else {
+          <a routerLink="/login" class="btn-login">Вхід</a>
+          <a routerLink="/register" class="btn-register">Реєстрація</a>
+        }
+      </div>
+
+    </div>
+  </div>
+</div>

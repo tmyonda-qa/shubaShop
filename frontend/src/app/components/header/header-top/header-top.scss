@@ -1,0 +1,90 @@
+.header-top {
+  background: #2c2c2c;
+  color: #fff;
+  padding: 8px 0;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__phone {
+    color: #fff;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    &:hover { color: #d4a84b; }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 16px;
+    flex: 1;
+    justify-content: center;
+    a {
+      color: #ccc;
+      font-size: 13px;
+      transition: color 0.2s;
+      &:hover { color: #fff; }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    gap: 10px;
+    .social-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: opacity 0.2s;
+      &:hover { opacity: 0.8; }
+      &.viber { background: #7360f2; color: #fff; }
+      &.telegram { background: #29a8eb; color: #fff; }
+    }
+  }
+
+  &__auth {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+
+    .btn-login, .btn-register, .btn-admin {
+      padding: 5px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+    .btn-login {
+      color: #fff;
+      border: 1px solid #fff;
+      &:hover { background: #fff; color: #2c2c2c; }
+    }
+    .btn-register {
+      background: #d4a84b;
+      color: #fff;
+      &:hover { background: #c49640; }
+    }
+    .btn-admin {
+      background: #e74c3c;
+      color: #fff;
+      &:hover { background: #c0392b; }
+    }
+    .btn-logout {
+      background: none;
+      border: 1px solid #ccc;
+      color: #ccc;
+      padding: 5px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      cursor: pointer;
+      &:hover { border-color: #fff; color: #fff; }
+    }
+  }
+}

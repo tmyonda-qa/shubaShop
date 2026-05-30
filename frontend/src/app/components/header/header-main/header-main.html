@@ -1,0 +1,25 @@
+<div class="header-main">
+  <div class="container">
+    <div class="header-main__inner">
+
+      <a routerLink="/" class="logo">
+        <span class="logo__icon">🧥</span>
+        <span class="logo__text">Шубка Тисмениця</span>
+      </a>
+
+      <div class="header-main__search">
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (keydown)="onKeyDown($event)"
+          placeholder="Пошук за артикулом, номером або назвою..."
+          class="search-input"
+        />
+        <button class="search-btn" (click)="onSearch()">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

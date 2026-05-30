@@ -1,1 +1,5 @@
-<p>header works!</p>
+<header class="header">
+  <app-header-top></app-header-top>
+  <app-header-main (searched)="onSearch($event)"></app-header-main>
+  <app-header-catalog></app-header-catalog>
+</header>
