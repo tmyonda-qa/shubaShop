@@ -1,1 +1,107 @@
-<p>order works!</p>
+<div class="order-page">
+  <div class="container">
+    <h1 class="order-page__title">Оформлення замовлення</h1>
+    @if (loading()) {
+      <div class="order-page__loading">Завантаження...</div>
+    }
+
+    @if (!loading() && success()) {
+      <div class="order-page__success">
+        <div class="success-box">
+          <div class="success-box__icon">✅</div>
+          <h2>Замовлення відправлено!</h2>
+          <p>Ми зв'яжемося з вами найближчим часом.</p>
+          <a routerLink="/catalog" class="btn-primary">Повернутися до каталогу</a>
+        </div>
+      </div>
+    }
+
+    @if (!loading() && !success() && product()) {
+      <div class="order-page__inner">
+
+        <div class="order-page__product">
+          <h2 class="order-page__section-title">Товар</h2>
+          <div class="order-product">
+            <div class="order-product__info">
+              <p class="order-product__article">Арт. {{product()!.article}}</p>
+              <h3 class="order-product__name">{{product()!.name}}</h3>
+              <p class="order-product__price">{{product()!.price | number}} грн</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="order-page__form">
+          <h2 class="order-page__section-title">Контактні дані</h2>
+          <div class="order-form">
+            <div class="order-form__row">
+              <div class="order-form__field">
+                <label class="order-form__label">Телефон *</label>
+                <input
+                  type="tel"
+                  [(ngModel)]="form.phone"
+                  placeholder="+38 (0__) ___-__-__"
+                  class="order-form__input"
+                  required
+                />
+              </div>
+              <div class="order-form__field">
+                <label class="order-form__label">Email</label>
+                <input
+                  type="email"
+                  [(ngModel)]="form.email"
+                  placeholder="email@example.com"
+                  class="order-form__input"
+                />
+              </div>
+            </div>
+
+            <h2 class="order-page__section-title">Розміри</h2>
+            <div class="order-form__row">
+              <div class="order-form__field">
+                <label class="order-form__label">Обхват грудей, см</label>
+                <input type="number" [(ngModel)]="form.chest" placeholder="90" class="order-form__input" />
+              </div>
+              <div class="order-form__field">
+                <label class="order-form__label">Обхват бедер, см</label>
+                <input type="number" [(ngModel)]="form.hips" placeholder="100" class="order-form__input" />
+              </div>
+            </div>
+            <div class="order-form__row">
+              <div class="order-form__field">
+                <label class="order-form__label">Довжина виробу, см</label>
+                <input type="number" [(ngModel)]="form.product_length" placeholder="110" class="order-form__input" />
+              </div>
+              <div class="order-form__field">
+                <label class="order-form__label">Ріст, см</label>
+                <input type="number" [(ngModel)]="form.height" placeholder="165" class="order-form__input" />
+              </div>
+            </div>
+
+            <div class="order-form__field">
+              <label class="order-form__label">Додаткова інформація або побажання</label>
+              <textarea
+                [(ngModel)]="form.message"
+                placeholder="Вкажіть будь-які додаткові побажання..."
+                class="order-form__textarea"
+                rows="5"
+              ></textarea>
+            </div>
+
+            <button
+              class="order-form__submit"
+              (click)="submit()"
+              [disabled]="submitting() || !form.phone"
+            >
+              @if (submitting()) {
+                Відправляємо...
+              } @else {
+                Надіслати замовлення
+              }
+            </button>
+          </div>
+        </div>
+
+      </div>
+    }
+  </div>
+</div>
