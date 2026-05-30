@@ -1,0 +1,26 @@
+.product-detail {
+  padding: 24px 0 60px;
+
+  &__loading, &__error {
+    text-align: center;
+    padding: 60px;
+    color: #999;
+    font-size: 18px;
+  }
+
+  &__inner {
+    display: flex;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  &__gallery {
+    flex: 0 0 55%;
+  }
+
+  &__info {
+    flex: 1;
+    position: sticky;
+    top: 160px;
+  }
+}

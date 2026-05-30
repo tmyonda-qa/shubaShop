@@ -1,0 +1,55 @@
+<div class="product-info">
+  <p class="product-info__article">Арт. {{product().article}}</p>
+  <h1 class="product-info__name">{{product().name}}</h1>
+  <p class="product-info__price">{{product().price | number}} грн</p>
+
+  <div class="product-info__details">
+    @if (product().fur_type) {
+      <div class="product-info__detail">
+        <span class="product-info__detail-label">Вид хутра:</span>
+        <span class="product-info__detail-value">{{product().fur_type}}</span>
+      </div>
+    }
+    @if (product().hood) {
+      <div class="product-info__detail">
+        <span class="product-info__detail-label">Капюшон:</span>
+        <span class="product-info__detail-value">{{product().hood}}</span>
+      </div>
+    }
+    @if (product().fastener) {
+      <div class="product-info__detail">
+        <span class="product-info__detail-label">Застібка:</span>
+        <span class="product-info__detail-value">{{product().fastener}}</span>
+      </div>
+    }
+    @if (product().type) {
+      <div class="product-info__detail">
+        <span class="product-info__detail-label">Тип:</span>
+        <span class="product-info__detail-value">{{product().type}}</span>
+      </div>
+    }
+    @if (product().length) {
+      <div class="product-info__detail">
+        <span class="product-info__detail-label">Довжина:</span>
+        <span class="product-info__detail-value">{{product().length}} см</span>
+      </div>
+    }
+  </div>
+
+  @if (product().description) {
+    <div class="product-info__desc">
+      <h3 class="product-info__desc-title">Опис</h3>
+      <p>{{product().description}}</p>
+    </div>
+  }
+
+  <div class="product-info__actions">
+    <a [routerLink]="['/order', product().id]" class="btn-order">
+      Замовити
+    </a>
+    <button class="btn-cart">
+      <i class="fas fa-shopping-bag"></i>
+      Додати в кошик
+    </button>
+  </div>
+</div>

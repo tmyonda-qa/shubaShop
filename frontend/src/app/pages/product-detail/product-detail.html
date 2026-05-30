@@ -1,1 +1,28 @@
-<p>product-detail works!</p>
+<div class="product-detail">
+  <div class="container">
+    <app-catalog-breadcrumbs></app-catalog-breadcrumbs>
+
+    @if (loading()) {
+      <div class="product-detail__loading">
+        <p>Завантаження...</p>
+      </div>
+    }
+
+    @if (!loading() && !product()) {
+      <div class="product-detail__error">
+        <p>Товар не знайдено</p>
+      </div>
+    }
+
+    @if (!loading() && product()) {
+      <div class="product-detail__inner">
+        <div class="product-detail__gallery">
+          <app-product-gallery [images]="product()!.images"></app-product-gallery>
+        </div>
+        <div class="product-detail__info">
+          <app-product-info [product]="product()!"></app-product-info>
+        </div>
+      </div>
+    }
+  </div>
+</div>
