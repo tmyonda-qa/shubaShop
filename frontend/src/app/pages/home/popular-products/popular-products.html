@@ -1,0 +1,41 @@
+<section class="popular">
+  <div class="container">
+    <div class="popular__header">
+      <h2 class="popular__title">Популярні товари</h2>
+      <a routerLink="/catalog" class="popular__link">Переглянути всі →</a>
+    </div>
+
+    @if (loading) {
+      <div class="popular__loading">
+        <p>Завантаження...</p>
+      </div>
+    }
+
+    @if (!loading && products.length === 0) {
+      <div class="popular__empty">
+        <p>Товари ще не додані</p>
+      </div>
+    }
+
+    @if (!loading && products.length > 0) {
+      <div class="popular__grid">
+        @for (product of products; track product.id) {
+          <a routerLink="/catalog/{{product.id}}" class="product-card">
+            <div class="product-card__image">
+              @if (getMainImage(product)) {
+                <img [src]="getMainImage(product)" [alt]="product.name" />
+              } @else {
+                <div class="product-card__no-image">🧥</div>
+              }
+            </div>
+            <div class="product-card__info">
+              <p class="product-card__article">Арт. {{product.article}}</p>
+              <h3 class="product-card__name">{{product.name}}</h3>
+              <p class="product-card__price">{{product.price | number}} грн</p>
+            </div>
+          </a>
+        }
+      </div>
+    }
+  </div>
+</section>
