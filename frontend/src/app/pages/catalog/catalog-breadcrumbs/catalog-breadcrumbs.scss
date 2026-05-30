@@ -1,0 +1,25 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+  margin-bottom: 16px;
+
+  &__item {
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+
+    &:hover { color: #d4a84b; }
+
+    &--active {
+      color: #2c2c2c;
+      font-weight: 500;
+    }
+  }
+
+  &__separator {
+    color: #ccc;
+    font-size: 16px;
+  }
+}

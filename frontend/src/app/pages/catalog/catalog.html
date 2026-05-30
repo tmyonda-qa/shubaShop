@@ -1,1 +1,22 @@
-<p>catalog works!</p>
+<div class="catalog-page">
+  <div class="container">
+    <app-catalog-breadcrumbs></app-catalog-breadcrumbs>
+    <div class="catalog-page__inner">
+      <aside class="catalog-page__sidebar">
+        <app-catalog-filters
+          [filters]="filters()"
+          (filtersChange)="onFiltersChange($event)"
+        ></app-catalog-filters>
+      </aside>
+      <main class="catalog-page__content">
+        <app-catalog-grid
+          [products]="products()"
+          [loading]="loading()"
+          [currentPage]="currentPage()"
+          [totalPages]="totalPages()"
+          (pageChange)="onPageChange($event)"
+        ></app-catalog-grid>
+      </main>
+    </div>
+  </div>
+</div>

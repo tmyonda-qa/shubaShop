@@ -1,0 +1,92 @@
+<div class="filters">
+  <div class="filters__header">
+    <h3 class="filters__title">Фільтри</h3>
+    <button class="filters__reset" (click)="reset()">Скинути</button>
+  </div>
+
+  <div class="filters__group">
+    <h4 class="filters__group-title">Капюшон</h4>
+    <label class="filters__option">
+      <input type="radio" name="hood" value="Вшитий" (change)="hood.set('Вшитий')" [checked]="hood() === 'Вшитий'" />
+      Вшитий
+    </label>
+    <label class="filters__option">
+      <input type="radio" name="hood" value="Без капюшона" (change)="hood.set('Без капюшона')" [checked]="hood() === 'Без капюшона'" />
+      Без капюшона
+    </label>
+  </div>
+
+  <div class="filters__group">
+    <h4 class="filters__group-title">Застібка</h4>
+    <label class="filters__option">
+      <input type="radio" name="fastener" value="Гачки" (change)="fastener.set('Гачки')" [checked]="fastener() === 'Гачки'" />
+      Гачки
+    </label>
+    <label class="filters__option">
+      <input type="radio" name="fastener" value="Кнопки" (change)="fastener.set('Кнопки')" [checked]="fastener() === 'Кнопки'" />
+      Кнопки
+    </label>
+  </div>
+
+  <div class="filters__group">
+    <h4 class="filters__group-title">Вид хутра</h4>
+    <label class="filters__option">
+      <input type="radio" name="fur_type" value="Норка" (change)="furType.set('Норка')" [checked]="furType() === 'Норка'" />
+      Норка
+    </label>
+    <label class="filters__option">
+      <input type="radio" name="fur_type" value="Лисиця" (change)="furType.set('Лисиця')" [checked]="furType() === 'Лисиця'" />
+      Лисиця
+    </label>
+    <label class="filters__option">
+      <input type="radio" name="fur_type" value="Каракуль" (change)="furType.set('Каракуль')" [checked]="furType() === 'Каракуль'" />
+      Каракуль
+    </label>
+  </div>
+
+  <div class="filters__group">
+    <h4 class="filters__group-title">Тип</h4>
+    <label class="filters__option">
+      <input type="radio" name="type" value="Шуба" (change)="type.set('Шуба')" [checked]="type() === 'Шуба'" />
+      Шуба
+    </label>
+    <label class="filters__option">
+      <input type="radio" name="type" value="Напівшубок" (change)="type.set('Напівшубок')" [checked]="type() === 'Напівшубок'" />
+      Напівшубок
+    </label>
+  </div>
+
+  <div class="filters__group">
+    <h4 class="filters__group-title">Ціна, грн</h4>
+    <div class="filters__price">
+      <input
+        type="number"
+        placeholder="Від"
+        [value]="priceFrom()"
+        (input)="priceFrom.set($any($event.target).value)"
+        class="filters__price-input"
+      />
+      <span>—</span>
+      <input
+        type="number"
+        placeholder="До"
+        [value]="priceTo()"
+        (input)="priceTo.set($any($event.target).value)"
+        class="filters__price-input"
+      />
+    </div>
+  </div>
+
+  <div class="filters__group">
+    <h4 class="filters__group-title">Довжина, см</h4>
+    <input
+      type="number"
+      placeholder="Введіть довжину"
+      [value]="length()"
+      (input)="length.set($any($event.target).value)"
+      class="filters__input"
+    />
+  </div>
+
+  <button class="filters__apply" (click)="apply()">Застосувати</button>
+</div>

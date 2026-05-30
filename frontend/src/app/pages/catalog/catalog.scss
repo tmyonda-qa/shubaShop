@@ -1,0 +1,20 @@
+.catalog-page {
+  padding: 24px 0 60px;
+
+  &__inner {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+
+  &__sidebar {
+    flex: 0 0 260px;
+    position: sticky;
+    top: 160px;
+  }
+
+  &__content {
+    flex: 1;
+    min-width: 0;
+  }
+}
