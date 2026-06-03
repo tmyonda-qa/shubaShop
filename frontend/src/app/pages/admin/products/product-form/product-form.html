@@ -1,0 +1,101 @@
+<div class="product-form-overlay">
+  <div class="product-form">
+    <div class="product-form__header">
+      <h2>{{product() ? 'Редагувати товар' : 'Додати товар'}}</h2>
+      <button class="product-form__close" (click)="cancelled.emit()">✕</button>
+    </div>
+
+    <div class="product-form__body">
+      <div class="form-grid">
+        <div class="form-field">
+          <label>Категорія *</label>
+          <select [(ngModel)]="form.category_id" class="form-input">
+            <option value="">Виберіть категорію</option>
+            @for (cat of categories(); track cat.id) {
+              <option [value]="cat.id">{{cat.name}}</option>
+            }
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Назва *</label>
+          <input type="text" [(ngModel)]="form.name" class="form-input" placeholder="Назва товару" />
+        </div>
+
+        <div class="form-field">
+          <label>Артикул *</label>
+          <input type="text" [(ngModel)]="form.article" class="form-input" placeholder="SH-001" />
+        </div>
+
+        <div class="form-field">
+          <label>Ціна, грн *</label>
+          <input type="number" [(ngModel)]="form.price" class="form-input" placeholder="25000" />
+        </div>
+
+        <div class="form-field">
+          <label>Вид хутра</label>
+          <input type="text" [(ngModel)]="form.fur_type" class="form-input" placeholder="Норка" />
+        </div>
+
+        <div class="form-field">
+          <label>Капюшон</label>
+          <select [(ngModel)]="form.hood" class="form-input">
+            <option value="">—</option>
+            <option value="Вшитий">Вшитий</option>
+            <option value="Без капюшона">Без капюшона</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Застібка</label>
+          <select [(ngModel)]="form.fastener" class="form-input">
+            <option value="">—</option>
+            <option value="Гачки">Гачки</option>
+            <option value="Кнопки">Кнопки</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Тип</label>
+          <select [(ngModel)]="form.type" class="form-input">
+            <option value="">—</option>
+            <option value="Шуба">Шуба</option>
+            <option value="Напівшубок">Напівшубок</option>
+          </select>
+        </div>
+
+        <div class="form-field">
+          <label>Довжина, см</label>
+          <input type="number" [(ngModel)]="form.length" class="form-input" placeholder="110" />
+        </div>
+
+        <div class="form-field form-field--full">
+          <label>Опис</label>
+          <textarea [(ngModel)]="form.description" class="form-input form-textarea" placeholder="Опис товару..." rows="4"></textarea>
+        </div>
+
+        <div class="form-field form-field--full">
+          <label>Фотографії</label>
+          <input type="file" multiple accept="image/*" (change)="onFileSelect($event)" class="form-input" />
+          @if (selectedFiles().length > 0) {
+            <p class="form-hint">Вибрано файлів: {{selectedFiles().length}}</p>
+          }
+        </div>
+
+        <div class="form-field">
+          <label class="form-checkbox">
+            <input type="checkbox" [(ngModel)]="form.is_active" />
+            Активний товар
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-form__footer">
+      <button class="btn-cancel" (click)="cancelled.emit()">Скасувати</button>
+      <button class="btn-save" (click)="submit()" [disabled]="loading()">
+        @if (loading()) { Збереження... } @else { Зберегти }
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,50 @@
-<p>orders works!</p>
+<div class="admin-orders">
+  <div class="admin-orders__header">
+    <h1 class="admin-orders__title">
+      Замовлення клієнтів
+      @if (orders().length > 0) {
+        <span class="orders-count">{{orders().length}}</span>
+      }
+    </h1>
+    <a routerLink="/admin/dashboard" class="btn-back">← Назад</a>
+  </div>
+
+  <div class="admin-orders__filters">
+    <button
+      class="filter-btn"
+      [class.active]="filter() === 'all'"
+      (click)="filter.set('all')"
+    >
+      Всі ({{orders().length}})
+    </button>
+    <button
+      class="filter-btn filter-btn--new"
+      [class.active]="filter() === 'new'"
+      (click)="filter.set('new')"
+    >
+      Нові ({{orders().length > 0 ? orders().filter(o => o.status === 'new').length : 0}})
+    </button>
+    <button
+      class="filter-btn filter-btn--progress"
+      [class.active]="filter() === 'in_progress'"
+      (click)="filter.set('in_progress')"
+    >
+      В обробці ({{orders().length > 0 ? orders().filter(o => o.status === 'in_progress').length : 0}})
+    </button>
+    <button
+      class="filter-btn filter-btn--done"
+      [class.active]="filter() === 'done'"
+      (click)="filter.set('done')"
+    >
+      Виконані ({{orders().length > 0 ? orders().filter(o => o.status === 'done').length : 0}})
+    </button>
+  </div>
+
+  <app-orders-list
+    [orders]="filteredOrders()"
+    [loading]="loading()"
+    [isSuperAdmin]="auth.isSuperAdmin()"
+    (statusChange)="onStatusChange($event)"
+    (deleteOrder)="onDelete($event)"
+  ></app-orders-list>
+</div>

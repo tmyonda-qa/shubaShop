@@ -1,1 +1,63 @@
-<p>register works!</p>
+<div class="auth-page">
+  <div class="auth-card">
+    <h1 class="auth-card__title">Реєстрація</h1>
+
+    @if (error()) {
+      <div class="auth-card__error">{{error()}}</div>
+    }
+
+    <div class="auth-form">
+      <div class="auth-form__field">
+        <label class="auth-form__label">Ім'я</label>
+        <input
+          type="text"
+          [(ngModel)]="form.name"
+          placeholder="Ваше ім'я"
+          class="auth-form__input"
+        />
+      </div>
+
+      <div class="auth-form__field">
+        <label class="auth-form__label">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="form.email"
+          placeholder="email@example.com"
+          class="auth-form__input"
+        />
+      </div>
+
+      <div class="auth-form__field">
+        <label class="auth-form__label">Пароль</label>
+        <input
+          type="password"
+          [(ngModel)]="form.password"
+          placeholder="••••••••"
+          class="auth-form__input"
+        />
+      </div>
+
+      <div class="auth-form__field">
+        <label class="auth-form__label">Підтвердження пароля</label>
+        <input
+          type="password"
+          [(ngModel)]="form.password_confirmation"
+          placeholder="••••••••"
+          class="auth-form__input"
+        />
+      </div>
+
+      <button
+        class="auth-form__submit"
+        (click)="submit()"
+        [disabled]="loading()"
+      >
+        @if (loading()) { Завантаження... } @else { Зареєструватися }
+      </button>
+    </div>
+
+    <p class="auth-card__footer">
+      Вже маєте акаунт? <a routerLink="/login">Увійти</a>
+    </p>
+  </div>
+</div>

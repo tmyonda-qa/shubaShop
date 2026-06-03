@@ -17,6 +17,8 @@ export interface Product {
   is_active: boolean;
   images: ProductImage[];
   category: Category;
+  createdBy?: { id: number; name: string; email: string; };
+  updatedBy?: { id: number; name: string; email: string; };
 }
 
 export interface ProductImage {

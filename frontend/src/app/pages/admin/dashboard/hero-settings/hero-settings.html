@@ -1,0 +1,42 @@
+<div class="hero-settings">
+  <h2 class="hero-settings__title">Налаштування головної сторінки</h2>
+
+  <div class="hero-settings__inner">
+    <div class="hero-settings__preview">
+      <p class="hero-settings__label">Поточне фото</p>
+      @if (previewUrl()) {
+        <img [src]="previewUrl()!" alt="Preview" class="hero-settings__img" />
+      } @else if (settings()?.image_path) {
+        <img [src]="getImageUrl(settings()!.image_path!)" alt="Hero" class="hero-settings__img" />
+      } @else {
+        <div class="hero-settings__no-image">🧥 Фото не завантажено</div>
+      }
+    </div>
+
+    <div class="hero-settings__form">
+      <div class="form-field">
+        <label>Завантажити фото</label>
+        <input type="file" accept="image/*" (change)="onFileSelect($event)" class="form-input" />
+        <p class="form-hint">Рекомендований розмір: 400x400px. Макс: 10MB</p>
+      </div>
+
+      <div class="form-field">
+        <label>Заголовок</label>
+        <input type="text" [(ngModel)]="form.title" class="form-input" placeholder="Елегантні шуби..." />
+      </div>
+
+      <div class="form-field">
+        <label>Підзаголовок</label>
+        <textarea [(ngModel)]="form.subtitle" class="form-input form-textarea" placeholder="Опис..." rows="3"></textarea>
+      </div>
+
+      @if (success()) {
+        <div class="hero-settings__success">✅ Збережено успішно!</div>
+      }
+
+      <button class="btn-save" (click)="submit()" [disabled]="loading()">
+        @if (loading()) { Збереження... } @else { Зберегти }
+      </button>
+    </div>
+  </div>
+</div>

@@ -9,6 +9,7 @@ export interface User {
   name: string;
   email: string;
   is_admin: boolean;
+  role: 'super_admin' | 'sub_admin' | 'user';
 }
 
 @Injectable({
@@ -50,7 +51,16 @@ export class Auth {
   }
 
   isAdmin(): boolean {
-    return this.currentUser()?.is_admin ?? false;
+    const role = this.currentUser()?.role;
+    return role === 'super_admin' || role === 'sub_admin';
+  }
+
+  isSuperAdmin(): boolean {
+    return this.currentUser()?.role === 'super_admin';
+  }
+
+  isSubAdmin(): boolean {
+    return this.currentUser()?.role === 'sub_admin';
   }
 
   getToken(): string | null {

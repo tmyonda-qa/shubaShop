@@ -1,0 +1,97 @@
+<div class="orders-list">
+  @if (loading()) {
+    <div class="orders-list__loading">Завантаження...</div>
+  }
+
+  @if (!loading() && orders().length === 0) {
+    <div class="orders-list__empty">
+      <p>📭 Замовлень немає</p>
+    </div>
+  }
+
+  @if (!loading() && orders().length > 0) {
+    <div class="orders-table">
+      <div class="orders-table__header">
+        <span>ID</span>
+        <span>Товар</span>
+        <span>Контакти</span>
+        <span>Повідомлення</span>
+        <span>Розміри</span>
+        <span>Статус</span>
+        <span>Взяв в роботу</span>
+        <span>Дата</span>
+        <span>Дії</span>
+      </div>
+
+      @for (order of orders(); track order.id) {
+        <div class="orders-table__row" [class.row--new]="order.status === 'new'">
+          <span class="order-id">#{{order.id}}</span>
+
+          <div class="order-product">
+            <p class="order-product__name">{{order.product?.name}}</p>
+            <p class="order-product__article">Арт. {{order.product?.article}}</p>
+            <p class="order-product__price">{{order.product?.price | number}} грн</p>
+          </div>
+
+          <div class="order-contacts">
+            <p>📞 {{order.phone}}</p>
+            @if (order.email) {
+              <p>✉️ {{order.email}}</p>
+            }
+          </div>
+
+          <div class="order-message-cell">
+            @if (order.message) {
+              <div class="message-preview">
+                <span class="message-preview__text">{{order.message}}</span>
+                <div class="message-tooltip">{{order.message}}</div>
+              </div>
+            } @else {
+              <span class="no-message">—</span>
+            }
+          </div>
+
+          <div class="order-sizes">
+            @if (order.chest) { <p>Груди: {{order.chest}} см</p> }
+            @if (order.hips) { <p>Бедра: {{order.hips}} см</p> }
+            @if (order.product_length) { <p>Довжина: {{order.product_length}} см</p> }
+            @if (order.height) { <p>Ріст: {{order.height}} см</p> }
+          </div>
+
+          <div>
+            <span class="status-badge" [class]="getStatusClass(order.status)">
+              {{getStatusLabel(order.status)}}
+            </span>
+            <select class="status-select" (change)="onStatusChange(order.id, $event)">
+              <option value="new" [selected]="order.status === 'new'">Новий</option>
+              <option value="in_progress" [selected]="order.status === 'in_progress'">В обробці</option>
+              <option value="done" [selected]="order.status === 'done'">Виконано</option>
+            </select>
+          </div>
+
+          <div class="order-taken">
+            @if ($any(order).taken_by) {
+              <div class="taken-info">
+                <span class="taken-avatar">👤</span>
+                <div>
+                  <p class="taken-by">{{$any(order).taken_by?.name || 'Адмін'}}</p>
+                  @if (order.taken_at) {
+                    <p class="taken-at">{{order.taken_at | date:'dd.MM HH:mm':'Europe/Kiev'}}</p>
+                  }
+                </div>
+              </div>
+            } @else {
+              <p class="not-taken">Не взято</p>
+            }
+          </div>
+
+          <span class="order-date">{{order.created_at | date:'dd.MM.yyyy HH:mm':'Europe/Kiev'}}</span>
+
+          <div class="order-actions">
+            <button class="btn-delete" (click)="confirmDelete(order.id)">🗑️</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

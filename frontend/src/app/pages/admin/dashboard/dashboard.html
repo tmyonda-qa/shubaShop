@@ -1,1 +1,36 @@
-<p>dashboard works!</p>
+<div class="admin-dashboard">
+  <div class="admin-dashboard__header">
+    <div>
+      <h1 class="admin-dashboard__title">Адмін панель</h1>
+      <p class="admin-dashboard__subtitle">
+        Вітаємо, {{auth.currentUser()?.name}}!
+        @if (auth.isSuperAdmin()) {
+          <span class="badge badge--super">Super Admin</span>
+        } @else {
+          <span class="badge badge--sub">Менеджер</span>
+        }
+      </p>
+    </div>
+    <div class="admin-dashboard__actions">
+      <a routerLink="/admin/orders" class="btn-primary">Замовлення</a>
+      <a routerLink="/admin/products" class="btn-secondary">Товари</a>
+      @if (auth.isSuperAdmin()) {
+        <a routerLink="/admin/sub-admins" class="btn-outline">Адміни</a>
+      }
+    </div>
+  </div>
+
+  @if (stats()) {
+    <app-stats-cards [stats]="stats()!"></app-stats-cards>
+    @if (auth.isSuperAdmin()) {
+      <app-recent-activity [activities]="stats()!.recent_activities"></app-recent-activity>
+    }
+  }
+
+  @if (auth.isAdmin()) {
+    @if (auth.isSuperAdmin()) {
+      <app-analytics></app-analytics>
+    }
+    <app-hero-settings></app-hero-settings>
+  }
+</div>

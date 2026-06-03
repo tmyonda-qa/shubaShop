@@ -4,6 +4,7 @@ import { ProductService, Product, ProductFilters } from '../../core/services/pro
 import { CatalogFilters } from './catalog-filters/catalog-filters';
 import { CatalogGrid } from './catalog-grid/catalog-grid';
 import { CatalogBreadcrumbs } from './catalog-breadcrumbs/catalog-breadcrumbs';
+import { AnalyticsService } from '../../core/services/analytics';
 
 @Component({
   selector: 'app-catalog',
@@ -15,6 +16,7 @@ export class Catalog implements OnInit {
   private productService = inject(ProductService);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
+  private analytics = inject(AnalyticsService);
 
   products = signal<Product[]>([]);
   loading = signal(true);
@@ -23,6 +25,8 @@ export class Catalog implements OnInit {
   filters = signal<ProductFilters>({});
 
   ngOnInit() {
+    this.analytics.track('/catalog', 'view');
+
     this.route.queryParams.subscribe(params => {
       const filters: ProductFilters = {};
       if (params['category'] && params['category'] !== 'all') filters.category_id = +params['category'];

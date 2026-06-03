@@ -1,0 +1,113 @@
+.products-list {
+  &__loading, &__empty {
+    text-align: center;
+    padding: 60px;
+    color: #999;
+    font-size: 18px;
+  }
+}
+
+.products-table {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+
+  &__header {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 120px 120px 120px 100px 80px;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #f8f8f8;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    border-bottom: 1px solid #eee;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 80px 1fr 120px 120px 120px 120px 100px 80px;
+    gap: 12px;
+    padding: 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    align-items: center;
+    transition: background 0.2s;
+
+    &:hover { background: #fafafa; }
+    &:last-child { border-bottom: none; }
+  }
+}
+
+.product-image {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f5f5f5;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+  }
+}
+
+.product-info {
+  &__name { font-size: 14px; font-weight: 600; color: #2c2c2c; margin-bottom: 4px; }
+  &__article { font-size: 12px; color: #999; }
+}
+
+.product-category {
+  font-size: 13px;
+  color: #444;
+}
+
+.product-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #d4a84b;
+}
+
+.product-admin {
+  .admin-name { font-size: 13px; color: #2c2c2c; }
+  .admin-none { color: #ccc; }
+}
+
+.product-status {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #fee2e2;
+  color: #dc2626;
+  font-weight: 600;
+
+  &.active {
+    background: #dcfce7;
+    color: #16a34a;
+  }
+}
+
+.product-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-edit, .btn-delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  &:hover { opacity: 1; }
+}

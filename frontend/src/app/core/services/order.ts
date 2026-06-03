@@ -13,7 +13,12 @@ export interface Order {
   product_length: number;
   height: number;
   status: 'new' | 'in_progress' | 'done';
+  taken_by: number | null;
+  taken_at: string | null;
+  created_at: string;
   product: any;
+  taken_by_user?: { id: number; name: string; email: string; role: string; };
+  takenBy?: { id: number; name: string; email: string; role: string; };
 }
 
 @Injectable({

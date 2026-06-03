@@ -1,0 +1,75 @@
+<div class="sub-admins">
+  <div class="sub-admins__header">
+    <h1 class="sub-admins__title">Управління адмінами</h1>
+    <div class="sub-admins__actions">
+      <button class="btn-add" (click)="showForm.set(true)">+ Додати менеджера</button>
+      <a routerLink="/admin/dashboard" class="btn-back">← Назад</a>
+    </div>
+  </div>
+
+  @if (showForm()) {
+    <div class="admin-form">
+      <h2 class="admin-form__title">Новий менеджер</h2>
+
+      @if (formError()) {
+        <div class="admin-form__error">{{formError()}}</div>
+      }
+
+      <div class="admin-form__grid">
+        <div class="form-field">
+          <label>Ім'я</label>
+          <input type="text" [(ngModel)]="form.name" class="form-input" placeholder="Ім'я менеджера" />
+        </div>
+        <div class="form-field">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="form.email" class="form-input" placeholder="email@shubka.com" />
+        </div>
+        <div class="form-field">
+          <label>Пароль</label>
+          <input type="password" [(ngModel)]="form.password" class="form-input" placeholder="••••••" />
+        </div>
+      </div>
+
+      <div class="admin-form__actions">
+        <button class="btn-cancel" (click)="showForm.set(false)">Скасувати</button>
+        <button class="btn-save" (click)="submit()" [disabled]="formLoading()">
+          @if (formLoading()) { Збереження... } @else { Зберегти }
+        </button>
+      </div>
+    </div>
+  }
+
+  @if (loading()) {
+    <div class="sub-admins__loading">Завантаження...</div>
+  }
+
+  @if (!loading() && admins().length > 0) {
+    <div class="admins-table">
+      <div class="admins-table__header">
+        <span>Ім'я</span>
+        <span>Email</span>
+        <span>Роль</span>
+        <span>Активностей</span>
+        <span>Додано</span>
+        <span>Дії</span>
+      </div>
+
+      @for (admin of admins(); track admin.id) {
+        <div class="admins-table__row">
+          <span class="admin-name">{{admin.name}}</span>
+          <span class="admin-email">{{admin.email}}</span>
+          <span class="admin-role" [class.super]="admin.role === 'super_admin'">
+            {{getRoleLabel(admin.role)}}
+          </span>
+          <span class="admin-activity">{{admin.activity_logs_count}}</span>
+          <span class="admin-date">{{admin.created_at | date:'dd.MM.yyyy'}}</span>
+          <div class="admin-actions">
+            @if (admin.role !== 'super_admin') {
+              <button class="btn-delete" (click)="confirmDelete(admin.id)">🗑️</button>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

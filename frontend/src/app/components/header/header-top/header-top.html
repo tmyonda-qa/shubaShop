@@ -27,7 +27,10 @@
       <div class="header-top__auth">
         @if (auth.isLoggedIn()) {
           @if (auth.isAdmin()) {
-            <a routerLink="/admin/orders" class="btn-admin">Адмін панель</a>
+            <a routerLink="/admin/dashboard" class="btn-admin">
+              @if (auth.isSuperAdmin()) { 👑 } @else { 🔧 }
+              Адмін панель
+            </a>
           }
           <button (click)="logout()" class="btn-logout">Вийти</button>
         } @else {

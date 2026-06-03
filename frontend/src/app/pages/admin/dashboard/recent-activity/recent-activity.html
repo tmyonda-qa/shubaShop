@@ -1,0 +1,35 @@
+<div class="recent-activity">
+  <h2 class="recent-activity__title">Остання активність</h2>
+
+  @if (activities().length === 0) {
+    <div class="recent-activity__empty">
+      <p>Активності ще немає</p>
+    </div>
+  }
+
+  <div class="activity-list">
+    @for (log of activities(); track log.id) {
+      <div class="activity-item">
+        <div class="activity-item__icon">{{getActionIcon(log.action)}}</div>
+        <div class="activity-item__content">
+          <p class="activity-item__text">
+            <strong>{{log.user?.name}}</strong>
+            {{log.action}}
+            <span class="activity-item__entity">{{getEntityLabel(log.entity_type)}} #{{log.entity_id}}</span>
+          </p>
+          @if (log.details?.product_name) {
+            <p class="activity-item__detail">{{log.details.product_name}}</p>
+          }
+          @if (log.details?.old_status && log.details?.new_status) {
+            <p class="activity-item__detail">
+              {{log.details.old_status}} → {{log.details.new_status}}
+            </p>
+          }
+        </div>
+        <div class="activity-item__time">
+          {{log.created_at | date:'dd.MM HH:mm'}}
+        </div>
+      </div>
+    }
+  </div>
+</div>

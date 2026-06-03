@@ -1,0 +1,37 @@
+<div class="stats-grid">
+  <div class="stat-card stat-card--gold">
+    <div class="stat-card__icon">📦</div>
+    <div class="stat-card__info">
+      <p class="stat-card__label">Всього товарів</p>
+      <p class="stat-card__value">{{stats().total_products}}</p>
+    </div>
+    <a routerLink="/admin/products" class="stat-card__link">Переглянути →</a>
+  </div>
+
+  <div class="stat-card stat-card--blue">
+    <div class="stat-card__icon">🛍️</div>
+    <div class="stat-card__info">
+      <p class="stat-card__label">Нових замовлень</p>
+      <p class="stat-card__value">{{stats().new_orders}}</p>
+    </div>
+    <a routerLink="/admin/orders" class="stat-card__link">Переглянути →</a>
+  </div>
+
+  <div class="stat-card stat-card--orange">
+    <div class="stat-card__icon">⏳</div>
+    <div class="stat-card__info">
+      <p class="stat-card__label">В обробці</p>
+      <p class="stat-card__value">{{stats().in_progress_orders}}</p>
+    </div>
+    <a routerLink="/admin/orders" class="stat-card__link">Переглянути →</a>
+  </div>
+
+  <div class="stat-card stat-card--green">
+    <div class="stat-card__icon">✅</div>
+    <div class="stat-card__info">
+      <p class="stat-card__label">Виконано</p>
+      <p class="stat-card__value">{{stats().done_orders}}</p>
+    </div>
+    <a routerLink="/admin/orders" class="stat-card__link">Переглянути →</a>
+  </div>
+</div>

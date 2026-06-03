@@ -1,0 +1,72 @@
+<div class="products-list">
+  @if (loading()) {
+    <div class="products-list__loading">Завантаження...</div>
+  }
+
+  @if (!loading() && products().length === 0) {
+    <div class="products-list__empty">
+      <p>📦 Товарів ще немає</p>
+    </div>
+  }
+
+  @if (!loading() && products().length > 0) {
+    <div class="products-table">
+      <div class="products-table__header">
+        <span>Фото</span>
+        <span>Назва / Артикул</span>
+        <span>Категорія</span>
+        <span>Ціна</span>
+        <span>Додав</span>
+        <span>Редагував</span>
+        <span>Статус</span>
+        <span>Дії</span>
+      </div>
+
+      @for (product of products(); track product.id) {
+        <div class="products-table__row">
+          <div class="product-image">
+            @if (getMainImage(product)) {
+              <img [src]="getMainImage(product)" [alt]="product.name" />
+            } @else {
+              <div class="product-image__placeholder">🧥</div>
+            }
+          </div>
+
+          <div class="product-info">
+            <p class="product-info__name">{{product.name}}</p>
+            <p class="product-info__article">Арт. {{product.article}}</p>
+          </div>
+
+          <span class="product-category">{{product.category?.name}}</span>
+
+          <span class="product-price">{{product.price | number}} грн</span>
+
+          <div class="product-admin">
+            @if (product.createdBy) {
+              <p class="admin-name">{{product.createdBy.name}}</p>
+            } @else {
+              <p class="admin-none">—</p>
+            }
+          </div>
+
+          <div class="product-admin">
+            @if (product.updatedBy) {
+              <p class="admin-name">{{product.updatedBy.name}}</p>
+            } @else {
+              <p class="admin-none">—</p>
+            }
+          </div>
+
+          <span class="product-status" [class.active]="product.is_active">
+            {{product.is_active ? 'Активний' : 'Неактивний'}}
+          </span>
+
+          <div class="product-actions">
+            <button class="btn-edit" (click)="editProduct.emit(product)">✏️</button>
+            <button class="btn-delete" (click)="confirmDelete(product.id)">🗑️</button>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

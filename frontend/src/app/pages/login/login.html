@@ -1,1 +1,43 @@
-<p>login works!</p>
+<div class="auth-page">
+  <div class="auth-card">
+    <h1 class="auth-card__title">Вхід</h1>
+
+    @if (error()) {
+      <div class="auth-card__error">{{error()}}</div>
+    }
+
+    <div class="auth-form">
+      <div class="auth-form__field">
+        <label class="auth-form__label">Email</label>
+        <input
+          type="email"
+          [(ngModel)]="form.email"
+          placeholder="email@example.com"
+          class="auth-form__input"
+        />
+      </div>
+
+      <div class="auth-form__field">
+        <label class="auth-form__label">Пароль</label>
+        <input
+          type="password"
+          [(ngModel)]="form.password"
+          placeholder="••••••••"
+          class="auth-form__input"
+        />
+      </div>
+
+      <button
+        class="auth-form__submit"
+        (click)="submit()"
+        [disabled]="loading()"
+      >
+        @if (loading()) { Завантаження... } @else { Увійти }
+      </button>
+    </div>
+
+    <p class="auth-card__footer">
+      Немає акаунту? <a routerLink="/register">Зареєструватися</a>
+    </p>
+  </div>
+</div>

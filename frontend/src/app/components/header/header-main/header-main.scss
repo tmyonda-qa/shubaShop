@@ -21,13 +21,15 @@
   gap: 10px;
   text-decoration: none;
 
-  &__icon { font-size: 32px; }
+  &__icon { font-size: 36px; }
 
   &__text {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 38px;
+    font-weight: 800;
     color: #2c2c2c;
     white-space: nowrap;
+    letter-spacing: -0.5px;
+    font-family: 'Playfair Display', Georgia, serif;
   }
 }
 

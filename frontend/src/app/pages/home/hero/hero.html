@@ -2,17 +2,25 @@
   <div class="container">
     <div class="hero__inner">
       <div class="hero__content">
-        <h1 class="hero__title">Елегантні шуби з натурального хутра</h1>
-        <p class="hero__subtitle">Ексклюзивна колекція шуб від виробника у Тисмениці. Норка, лисиця, каракуль — найкраща якість за доступними цінами.</p>
+        <h1 class="hero__title">
+          {{settings()?.title || 'Елегантні шуби з натурального хутра'}}
+        </h1>
+        <p class="hero__subtitle">
+          {{settings()?.subtitle || 'Ексклюзивна колекція шуб від виробника у Тисмениці. Норка, лисиця, каракуль — найкраща якість за доступними цінами.'}}
+        </p>
         <div class="hero__actions">
-          <a routerLink="/catalog" class="btn-primary">Переглянути каталог</a>
+          <a routerLink="/catalog" class="btn-primary" (click)="trackCatalogClick()">Переглянути каталог</a>
           <a routerLink="/contacts" class="btn-secondary">Зв'язатися з нами</a>
         </div>
       </div>
       <div class="hero__image">
-        <div class="hero__image-placeholder">
-          <span>🧥</span>
-        </div>
+        @if (settings()?.image_path) {
+          <img [src]="getImageUrl(settings()!.image_path!)" alt="Шубка Тисмениця" class="hero__img" />
+        } @else {
+          <div class="hero__image-placeholder">
+            <span>🧥</span>
+          </div>
+        }
       </div>
     </div>
   </div>

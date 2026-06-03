@@ -1,1 +1,24 @@
-<p>products works!</p>
+<div class="admin-products">
+  <div class="admin-products__header">
+    <h1 class="admin-products__title">Товари</h1>
+    <div class="admin-products__actions">
+      <button class="btn-add" (click)="showForm.set(true)">+ Додати товар</button>
+      <a routerLink="/admin/dashboard" class="btn-back">← Назад</a>
+    </div>
+  </div>
+
+  @if (showForm()) {
+    <app-product-form
+      [product]="editProduct()"
+      (saved)="onFormSave()"
+      (cancelled)="onFormCancel()"
+    ></app-product-form>
+  }
+
+  <app-products-list
+    [products]="products()"
+    [loading]="loading()"
+    (editProduct)="onEdit($event)"
+    (deleteProduct)="onDelete($event)"
+  ></app-products-list>
+</div>

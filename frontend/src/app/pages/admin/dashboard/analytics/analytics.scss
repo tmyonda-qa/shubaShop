@@ -1,0 +1,127 @@
+.analytics {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c2c2c;
+    margin-bottom: 20px;
+  }
+
+  &__subtitle {
+    font-size: 15px;
+    font-weight: 600;
+    color: #2c2c2c;
+    margin-bottom: 16px;
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  &__bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  &__empty {
+    text-align: center;
+    padding: 40px;
+    color: #999;
+  }
+}
+
+.analytics-card {
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &__icon { font-size: 28px; }
+  &__label { font-size: 12px; color: #666; margin-bottom: 4px; }
+  &__value { font-size: 28px; font-weight: 700; color: #2c2c2c; }
+}
+
+.bar-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 140px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  padding: 16px;
+
+  &__item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    height: 100%;
+  }
+
+  &__bar-wrap {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+  }
+
+  &__bar {
+    width: 100%;
+    background: #d4a84b;
+    border-radius: 4px 4px 0 0;
+    min-height: 4px;
+    transition: height 0.3s;
+  }
+
+  &__count {
+    font-size: 11px;
+    color: #666;
+  }
+
+  &__date {
+    font-size: 11px;
+    color: #999;
+  }
+}
+
+.pages-list {
+  background: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 16px;
+    border-bottom: 1px solid #eee;
+
+    &:last-child { border-bottom: none; }
+    &:hover { background: #f0f0f0; }
+  }
+
+  &__name { font-size: 14px; color: #444; }
+  &__count {
+    font-size: 14px;
+    font-weight: 600;
+    color: #d4a84b;
+    background: #fef3c7;
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+}
