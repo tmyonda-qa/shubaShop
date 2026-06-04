@@ -9,7 +9,7 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (!$request->user() || !$request->user()->is_admin) {
+        if (!$request->user() || !$request->user()->isAnyAdmin()) {
             return response()->json(['message' => 'Доступ заборонено'], 403);
         }
 

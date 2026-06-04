@@ -16,10 +16,17 @@ class Order extends Model
         'product_length',
         'height',
         'status',
+        'taken_by',
+        'taken_at',
     ];
 
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
+
+  public function takenBy()
+  {
+      return $this->belongsTo(User::class, 'taken_by');
+  }
 }

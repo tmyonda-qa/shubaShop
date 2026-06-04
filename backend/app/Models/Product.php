@@ -18,6 +18,8 @@ class Product extends Model
         'length',
         'type',
         'is_active',
+        'created_by',
+        'updated_by',
     ];
 
     public function category()
@@ -33,5 +35,15 @@ class Product extends Model
     public function mainImage()
     {
         return $this->hasOne(ProductImage::class)->where('is_main', true);
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function updatedBy()
+    {
+        return $this->belongsTo(User::class, 'updated_by');
     }
 }
