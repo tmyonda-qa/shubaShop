@@ -23,9 +23,13 @@ export class Catalog implements OnInit {
   currentPage = signal(1);
   totalPages = signal(1);
   filters = signal<ProductFilters>({});
+  private tracked = false;
 
   ngOnInit() {
-    this.analytics.track('/catalog', 'view');
+    if (!this.tracked) {
+      this.analytics.track('/catalog', 'view');
+      this.tracked = true;
+    }
 
     this.route.queryParams.subscribe(params => {
       const filters: ProductFilters = {};
