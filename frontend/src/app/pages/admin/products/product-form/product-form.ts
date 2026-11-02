@@ -79,9 +79,12 @@ export class ProductForm implements OnInit {
     formData.append('fur_type', this.form.fur_type);
     formData.append('hood', this.form.hood);
     formData.append('fastener', this.form.fastener);
-    formData.append('length', this.form.length);
     formData.append('type', this.form.type);
     formData.append('is_active', this.form.is_active ? '1' : '0');
+
+    if (this.form.length) {
+      formData.append('length', this.form.length);
+    }
 
     this.selectedFiles().forEach((file, index) => {
       formData.append(`images[${index}]`, file);

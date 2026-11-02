@@ -1,0 +1,55 @@
+<div class="cart-page">
+  <div class="container">
+    <h1 class="cart-page__title">Кошик</h1>
+
+    @if (success()) {
+      <div class="cart-success">
+        <div class="cart-success__icon">✅</div>
+        <h2>Замовлення відправлено!</h2>
+        <p>Ми зв'яжемося з вами найближчим часом.</p>
+        <a routerLink="/catalog" class="btn-primary">Повернутися до каталогу</a>
+      </div>
+    } @else if (cart.items().length === 0) {
+      <div class="cart-empty">
+        <p>🛍️ Кошик порожній</p>
+        <a routerLink="/catalog" class="btn-primary">Перейти до каталогу</a>
+      </div>
+    } @else {
+      <div class="cart-page__inner">
+        <div class="cart-list">
+          @for (product of cart.items(); track product.id) {
+            <div class="cart-item">
+              <a [routerLink]="['/catalog', product.id]" class="cart-item__image">
+                @if (getImage(product)) {
+                  <img [src]="getImage(product)" [alt]="product.name" />
+                } @else {
+                  <span>🧥</span>
+                }
+              </a>
+              <div class="cart-item__info">
+                <p class="cart-item__article">Арт. {{product.article}}</p>
+                <h3 class="cart-item__name">{{product.name}}</h3>
+                <p class="cart-item__price">{{product.price | number}} грн</p>
+              </div>
+              <button class="cart-item__remove" (click)="cart.remove(product.id)" title="Видалити">🗑️</button>
+            </div>
+          }
+          <div class="cart-total">Разом: <strong>{{total() | number}} грн</strong></div>
+        </div>
+
+        <div class="cart-form">
+          <h2 class="cart-form__title">Контактні дані</h2>
+          <label>Телефон *</label>
+          <input type="tel" [(ngModel)]="form.phone" placeholder="+38 (0__) ___-__-__" />
+          <label>Email</label>
+          <input type="email" [(ngModel)]="form.email" placeholder="email@example.com" />
+          <label>Побажання</label>
+          <textarea [(ngModel)]="form.message" rows="4" placeholder="Розміри, побажання..."></textarea>
+          <button class="cart-form__submit" (click)="submit()" [disabled]="submitting() || !form.phone">
+            @if (submitting()) { Відправляємо... } @else { Надіслати замовлення }
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

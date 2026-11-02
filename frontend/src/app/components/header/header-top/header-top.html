@@ -2,34 +2,32 @@
   <div class="container">
     <div class="header-top__inner">
 
-      <a href="tel:+380123456789" class="header-top__phone">
-        <i class="fas fa-phone"></i>
-        +38 (012) 345-67-89
-      </a>
-
-      <nav class="header-top__nav">
-        <a routerLink="/about">Про компанію</a>
-        <a routerLink="/delivery">Доставка та оплата</a>
-        <a routerLink="/returns">Обмін та повернення</a>
-        <a routerLink="/blog">Блог</a>
-        <a routerLink="/contacts">Контакти</a>
-      </nav>
-
-      <div class="header-top__socials">
-        <a href="viber://chat?number=%2B380123456789" class="social-icon viber" title="Viber">
+      <div class="header-top__center">
+        <a href="tel:+380962969899" class="header-top__phone">
+          <i class="fas fa-phone"></i>
+          +38 (096) 296-98-99
+        </a>
+        <a href="viber://chat?number=%2B380962969899" class="social-icon viber" title="Viber">
           <i class="fab fa-viber"></i>
         </a>
         <a href="https://t.me/your_telegram" target="_blank" class="social-icon telegram" title="Telegram">
           <i class="fab fa-telegram"></i>
         </a>
+        <a href="https://www.facebook.com/people/%D0%A8%D1%83%D0%B1%D0%BA%D0%B0-%D0%A2%D0%B8%D1%81%D0%BC%D0%B5%D0%BD%D0%B8%D1%86%D1%8F/100059144528985/" target="_blank" class="social-icon facebook" title="Facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+        <a routerLink="/contacts" class="header-top__contacts-link">Контакти</a>
       </div>
 
       <div class="header-top__auth">
         @if (auth.isLoggedIn()) {
           @if (auth.isAdmin()) {
             <a routerLink="/admin/dashboard" class="btn-admin">
-              @if (auth.isSuperAdmin()) { 👑 } @else { 🔧 }
+              <i class="fas fa-user-shield"></i>
               Адмін панель
+              @if (adminService.newOrders() > 0) {
+                <span class="btn-admin__badge">{{adminService.newOrders()}}</span>
+              }
             </a>
           }
           <button (click)="logout()" class="btn-logout">Вийти</button>

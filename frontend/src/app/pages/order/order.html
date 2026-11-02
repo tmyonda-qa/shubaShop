@@ -1,6 +1,6 @@
 <div class="order-page">
   <div class="container">
-    <h1 class="order-page__title">Оформлення замовлення</h1>
+    <h1 class="order-page__title">Оформлення замовлення( Консультацію )</h1>
     @if (loading()) {
       <div class="order-page__loading">Завантаження...</div>
     }
@@ -59,21 +59,21 @@
             <div class="order-form__row">
               <div class="order-form__field">
                 <label class="order-form__label">Обхват грудей, см</label>
-                <input type="number" [(ngModel)]="form.chest" placeholder="90" class="order-form__input" />
+                <input type="number" [(ngModel)]="form.chest" placeholder="" class="order-form__input" />
               </div>
               <div class="order-form__field">
                 <label class="order-form__label">Обхват бедер, см</label>
-                <input type="number" [(ngModel)]="form.hips" placeholder="100" class="order-form__input" />
+                <input type="number" [(ngModel)]="form.hips" placeholder="" class="order-form__input" />
               </div>
             </div>
             <div class="order-form__row">
               <div class="order-form__field">
                 <label class="order-form__label">Довжина виробу, см</label>
-                <input type="number" [(ngModel)]="form.product_length" placeholder="110" class="order-form__input" />
+                <input type="number" [(ngModel)]="form.product_length" placeholder="" class="order-form__input" />
               </div>
               <div class="order-form__field">
                 <label class="order-form__label">Ріст, см</label>
-                <input type="number" [(ngModel)]="form.height" placeholder="165" class="order-form__input" />
+                <input type="number" [(ngModel)]="form.height" placeholder="" class="order-form__input" />
               </div>
             </div>
 

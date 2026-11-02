@@ -145,3 +145,10 @@
   transition: background 0.2s;
   &:hover { background: #c49640; }
 }
+
+/* order.scss */
+@media (max-width: 900px) {
+  .order-page__inner { flex-direction: column; }
+  .order-page__product { flex: none; width: 100%; }
+  .order-form__row { grid-template-columns: 1fr; }
+}

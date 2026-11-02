@@ -87,3 +87,30 @@
     &:hover { background: #c49640; }
   }
 }
+
+.filters__arrow {
+  display: none;
+  margin-left: 8px;
+  transition: transform 0.2s;
+  &.open { transform: rotate(180deg); }
+}
+
+@media (max-width: 900px) {
+  .filters {
+    padding: 14px 16px;
+
+    &__header {
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    &__title { font-size: 16px; }
+    &__arrow { display: inline-block; }
+
+    &__body {
+      display: none;
+      margin-top: 16px;
+      &.open { display: block; }
+    }
+  }
+}

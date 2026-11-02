@@ -47,9 +47,9 @@
     <a [routerLink]="['/order', product().id]" class="btn-order">
       Замовити
     </a>
-    <button class="btn-cart">
+    <button class="btn-cart" (click)="addToCart()">
       <i class="fas fa-shopping-bag"></i>
-      Додати в кошик
+      @if (cart.has(product().id)) { Вже в кошику } @else { Додати в кошик }
     </button>
   </div>
 </div>

@@ -60,9 +60,8 @@ export class Catalog implements OnInit {
   }
 
   onFiltersChange(filters: ProductFilters) {
-    this.router.navigate([], {
+    this.router.navigate(['/catalog'], {
       queryParams: filters,
-      queryParamsHandling: 'merge',
     });
   }
 

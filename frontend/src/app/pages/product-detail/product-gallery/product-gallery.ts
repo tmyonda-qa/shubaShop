@@ -11,6 +11,7 @@ import { ProductImage } from '../../../core/services/product';
 export class ProductGallery {
   images = input<ProductImage[]>([]);
   currentIndex = signal(0);
+  lightboxOpen = signal(false);
 
   currentImage = computed(() => this.images()[this.currentIndex()]);
 
@@ -32,5 +33,13 @@ export class ProductGallery {
 
   selectImage(index: number) {
     this.currentIndex.set(index);
+  }
+
+  openLightbox() {
+    this.lightboxOpen.set(true);
+  }
+
+  closeLightbox() {
+    this.lightboxOpen.set(false);
   }
 }

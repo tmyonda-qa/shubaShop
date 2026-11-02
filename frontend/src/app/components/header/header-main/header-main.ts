@@ -1,6 +1,7 @@
-import { Component, output } from '@angular/core';
+import { Component, inject, output } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CartService } from '../../../core/services/cart';
 
 @Component({
   selector: 'app-header-main',
@@ -9,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './header-main.scss',
 })
 export class HeaderMain {
+  cart = inject(CartService);
   searchQuery = '';
   searched = output<string>();
 

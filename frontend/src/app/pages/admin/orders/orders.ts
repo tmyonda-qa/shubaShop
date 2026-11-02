@@ -3,6 +3,7 @@ import { RouterLink } from '@angular/router';
 import { OrderService, Order } from '../../../core/services/order';
 import { Auth } from '../../../core/services/auth';
 import { OrdersList } from './orders-list/orders-list';
+import { AdminService } from '../../../core/services/admin';
 
 @Component({
   selector: 'app-orders',
@@ -13,6 +14,7 @@ import { OrdersList } from './orders-list/orders-list';
 export class Orders implements OnInit {
   auth = inject(Auth);
   orderService = inject(OrderService);
+  adminService = inject(AdminService);
   orders = signal<Order[]>([]);
   loading = signal(true);
   filter = signal<'all' | 'new' | 'in_progress' | 'done'>('all');
@@ -39,13 +41,19 @@ export class Orders implements OnInit {
 
   onStatusChange(data: { id: number; status: string }) {
     this.orderService.updateOrderStatus(data.id, data.status).subscribe({
-      next: () => this.loadOrders(),
+      next: () => {
+        this.loadOrders();
+        this.adminService.refreshNewOrders();
+      },
     });
   }
 
   onDelete(id: number) {
     this.orderService.deleteOrder(id).subscribe({
-      next: () => this.loadOrders(),
+      next: () => {
+        this.loadOrders();
+        this.adminService.refreshNewOrders();
+      },
     });
   }
 }

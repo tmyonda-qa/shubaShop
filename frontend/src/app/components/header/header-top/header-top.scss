@@ -1,59 +1,46 @@
 .header-top {
   background: #2c2c2c;
   color: #fff;
-  padding: 8px 0;
+  padding: 10px 0;
 
   &__inner {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     gap: 20px;
-    flex-wrap: wrap;
+  }
+
+  &__center {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+    justify-content: center;
   }
 
   &__phone {
     color: #fff;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: 600;
     display: flex;
     align-items: center;
     gap: 6px;
+    text-decoration: none;
     &:hover { color: #d4a84b; }
   }
 
-  &__nav {
-    display: flex;
-    gap: 16px;
-    flex: 1;
-    justify-content: center;
-    a {
-      color: #ccc;
-      font-size: 13px;
-      transition: color 0.2s;
-      &:hover { color: #fff; }
-    }
-  }
-
-  &__socials {
-    display: flex;
-    gap: 10px;
-    .social-icon {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 16px;
-      transition: opacity 0.2s;
-      &:hover { opacity: 0.8; }
-      &.viber { background: #7360f2; color: #fff; }
-      &.telegram { background: #29a8eb; color: #fff; }
-    }
+  &__contacts-link {
+    color: #ccc;
+    font-size: 15px;
+    text-decoration: none;
+    &:hover { color: #fff; }
   }
 
   &__auth {
     display: flex;
     gap: 8px;
     align-items: center;
+    flex-shrink: 0;
 
     .btn-login, .btn-register, .btn-admin {
       padding: 5px 14px;
@@ -86,5 +73,85 @@
       cursor: pointer;
       &:hover { border-color: #fff; color: #fff; }
     }
+  }
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: opacity 0.2s;
+  &:hover { opacity: 0.8; }
+  &.viber { background: #7360f2; color: #fff; }
+  &.telegram { background: #29a8eb; color: #fff; }
+  &.facebook { background: #1877f2; color: #fff; }
+}
+.cart-link {
+  position: relative;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  &:hover { color: #d4a84b; }
+
+  &__badge {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: #e74c3c;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+  }
+}
+.btn-admin {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  &__badge {
+    background: #fff;
+    color: #e74c3c;
+    font-size: 12px;
+    font-weight: 700;
+    min-width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 6px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-top {
+    padding: 8px 0;
+
+    &__inner {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    &__center {
+      flex-wrap: wrap;
+      gap: 10px;
+      width: 100%;
+    }
+
+    &__phone { font-size: 14px; }
+    &__auth { width: 100%; justify-content: center; flex-wrap: wrap; }
   }
 }

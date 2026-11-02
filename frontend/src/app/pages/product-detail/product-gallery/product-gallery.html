@@ -4,41 +4,23 @@
   }
 
   @if (images().length > 0) {
-    <div class="gallery__main">
-      <button
-        class="gallery__arrow gallery__arrow--left"
-        (click)="prev()"
-        [disabled]="currentIndex() === 0"
-      >
-        ‹
-      </button>
-
-      <div class="gallery__main-image">
-        <img
-          [src]="getImageUrl(currentImage().image_path)"
-          [alt]="'Фото ' + (currentIndex() + 1)"
-        />
-      </div>
-
-      <button
-        class="gallery__arrow gallery__arrow--right"
-        (click)="next()"
-        [disabled]="currentIndex() === images().length - 1"
-      >
-        ›
-      </button>
-    </div>
-
     <div class="gallery__thumbs">
       @for (image of images(); track image.id; let i = $index) {
-        <div
-          class="gallery__thumb"
-          [class.active]="i === currentIndex()"
-          (click)="selectImage(i)"
-        >
+        <div class="gallery__thumb" [class.active]="i === currentIndex()" (click)="selectImage(i)">
           <img [src]="getImageUrl(image.image_path)" [alt]="'Фото ' + (i + 1)" />
         </div>
       }
+    </div>
+
+    <div class="gallery__main">
+      @if (currentIndex() > 0) {
+        <button class="gallery__arrow gallery__arrow--left" (click)="prev()">‹</button>
+      }
+      <img [src]="getImageUrl(currentImage().image_path)" [alt]="'Фото ' + (currentIndex() + 1)" />
+      @if (currentIndex() < images().length - 1) {
+        <button class="gallery__arrow gallery__arrow--right" (click)="next()">›</button>
+      }
+      <div class="gallery__counter">{{currentIndex() + 1}} / {{images().length}}</div>
     </div>
   }
 </div>

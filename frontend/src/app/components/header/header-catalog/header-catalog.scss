@@ -22,3 +22,12 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  .catalog-nav {
+    overflow-x: auto;
+    white-space: nowrap;
+
+    &__item { padding: 10px 16px; flex-shrink: 0; }
+  }
+}

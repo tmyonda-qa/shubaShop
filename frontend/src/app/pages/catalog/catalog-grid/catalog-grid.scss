@@ -115,3 +115,10 @@
     color: #d4a84b;
   }
 }
+
+@media (max-width: 900px) {
+  .catalog-grid__items { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+}
+@media (max-width: 480px) {
+  .product-card__image { height: 200px; }
+}

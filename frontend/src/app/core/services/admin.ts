@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
@@ -27,10 +27,18 @@ export interface Stats {
 export class AdminService {
   private apiUrl = environment.apiUrl;
 
+  newOrders = signal(0);
+
   constructor(private http: HttpClient) {}
 
   getStats() {
     return this.http.get<Stats>(`${this.apiUrl}/admin/stats`);
+  }
+
+  refreshNewOrders() {
+    this.getStats().subscribe({
+      next: (s) => this.newOrders.set(s.new_orders),
+    });
   }
 
   getSubAdmins() {

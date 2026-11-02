@@ -19,22 +19,29 @@
 
         <div class="form-field">
           <label>Назва *</label>
-          <input type="text" [(ngModel)]="form.name" class="form-input" placeholder="Назва товару" />
+          <input type="text" [(ngModel)]="form.name" class="form-input" placeholder="" />
         </div>
 
         <div class="form-field">
           <label>Артикул *</label>
-          <input type="text" [(ngModel)]="form.article" class="form-input" placeholder="SH-001" />
+          <input type="text" [(ngModel)]="form.article" class="form-input" placeholder="" />
         </div>
 
         <div class="form-field">
           <label>Ціна, грн *</label>
-          <input type="number" [(ngModel)]="form.price" class="form-input" placeholder="25000" />
+          <input type="number" [(ngModel)]="form.price" class="form-input" placeholder="" />
         </div>
 
         <div class="form-field">
           <label>Вид хутра</label>
-          <input type="text" [(ngModel)]="form.fur_type" class="form-input" placeholder="Норка" />
+          <select [(ngModel)]="form.fur_type" class="form-input">
+            <option value="">—</option>
+            <option value="Нутрія">Нутрія</option>
+            <option value="Норка">Норка</option>
+            <option value="Лисиця">Лисиця</option>
+            <option value="Каракуль">Каракуль</option>
+            <option value="Інше">Інше</option>
+          </select>
         </div>
 
         <div class="form-field">
@@ -43,15 +50,6 @@
             <option value="">—</option>
             <option value="Вшитий">Вшитий</option>
             <option value="Без капюшона">Без капюшона</option>
-          </select>
-        </div>
-
-        <div class="form-field">
-          <label>Застібка</label>
-          <select [(ngModel)]="form.fastener" class="form-input">
-            <option value="">—</option>
-            <option value="Гачки">Гачки</option>
-            <option value="Кнопки">Кнопки</option>
           </select>
         </div>
 
@@ -66,7 +64,7 @@
 
         <div class="form-field">
           <label>Довжина, см</label>
-          <input type="number" [(ngModel)]="form.length" class="form-input" placeholder="110" />
+          <input type="number" [(ngModel)]="form.length" class="form-input" placeholder="" />
         </div>
 
         <div class="form-field form-field--full">

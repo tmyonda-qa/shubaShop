@@ -34,6 +34,16 @@ export const routes: Routes = [
       import('./pages/register/register').then(m => m.Register),
   },
   {
+    path: 'contacts',
+    loadComponent: () =>
+      import('./pages/contacts/contacts').then(m => m.Contacts),
+  },
+  {
+    path: 'cart',
+    loadComponent: () =>
+      import('./pages/cart/cart').then(m => m.Cart),
+  },
+  {
     path: 'admin',
     canActivate: [authGuard, adminGuard],
     children: [

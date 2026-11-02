@@ -18,3 +18,10 @@
     min-width: 0;
   }
 }
+
+@media (max-width: 900px) {
+  .catalog-page {
+    &__inner { flex-direction: column; }
+    &__sidebar { flex: none; width: 100%; position: static; }
+  }
+}
