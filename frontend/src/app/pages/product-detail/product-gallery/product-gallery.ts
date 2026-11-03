@@ -1,6 +1,7 @@
 import { Component, input, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductImage } from '../../../core/services/product';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-product-gallery',
@@ -16,7 +17,7 @@ export class ProductGallery {
   currentImage = computed(() => this.images()[this.currentIndex()]);
 
   getImageUrl(path: string): string {
-    return `http://127.0.0.1:8000/storage/${path}`;
+    return `${environment.storageUrl}/${path}`;
   }
 
   prev() {

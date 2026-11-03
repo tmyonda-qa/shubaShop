@@ -2,6 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProductService, Product } from '../../../core/services/product';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-popular-products',
@@ -30,6 +31,6 @@ export class PopularProducts implements OnInit {
     const main = product.images?.find(img => img.is_main);
     const first = product.images?.[0];
     const image = main || first;
-    return image ? `http://127.0.0.1:8000/storage/${image.image_path}` : '';
+    return image ? `${environment.storageUrl}/${image.image_path}` : '';
   }
 }

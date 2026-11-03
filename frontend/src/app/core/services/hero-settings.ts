@@ -26,6 +26,6 @@ export class HeroSettingsService {
   }
 
   getImageUrl(path: string): string {
-    return `http://127.0.0.1:8000/storage/${path}`;
+    return `${environment.storageUrl}/${path}`;
   }
 }

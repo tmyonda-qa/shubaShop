@@ -6,6 +6,7 @@ import { forkJoin } from 'rxjs';
 import { CartService } from '../../core/services/cart';
 import { OrderService } from '../../core/services/order';
 import { Product } from '../../core/services/product';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -24,7 +25,7 @@ export class Cart {
 
   getImage(product: Product): string {
     const img = product.images?.find(i => i.is_main) || product.images?.[0];
-    return img ? `http://127.0.0.1:8000/storage/${img.image_path}` : '';
+    return img ? `${environment.storageUrl}/${img.image_path}` : '';
   }
 
   total(): number {
