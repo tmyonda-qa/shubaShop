@@ -16,6 +16,8 @@ RUN echo "upload_max_filesize=50M\npost_max_size=50M" > /usr/local/etc/php/conf.
 
 WORKDIR /var/www/html
 COPY . .
+RUN mkdir -p storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 RUN composer install --no-dev --optimize-autoloader --no-interaction \
     && chown -R www-data:www-data storage bootstrap/cache
 
