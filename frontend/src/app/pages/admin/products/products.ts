@@ -25,7 +25,7 @@ export class Products implements OnInit {
 
   loadProducts() {
     this.loading.set(true);
-    this.productService.getProducts({}, 1).subscribe({
+    this.productService.getAdminProducts().subscribe({
       next: (res) => {
         this.products.set(res.data);
         this.loading.set(false);

@@ -41,6 +41,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::delete('admin/orders/{order}', [OrderController::class, 'destroy']);
         Route::get('admin/stats', [StatsController::class, 'index']);
         Route::post('admin/hero-settings', [HeroSettingsController::class, 'update']);
+        Route::get('admin/products-all', [ProductController::class, 'adminIndex']);
     });
 
     // Тільки super_admin

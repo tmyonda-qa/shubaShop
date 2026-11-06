@@ -81,4 +81,8 @@ export class ProductService {
   deleteProduct(id: number) {
     return this.http.delete(`${this.apiUrl}/admin/products/${id}`);
   }
+
+  getAdminProducts() {
+    return this.http.get<any>(`${this.apiUrl}/admin/products-all`);
+  }
 }

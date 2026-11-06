@@ -136,4 +136,11 @@ class ProductController extends Controller
 
         return response()->json(['message' => 'Товар видалено']);
     }
+
+public function adminIndex()
+{
+    return response()->json(
+        Product::with(['category', 'images', 'createdBy', 'updatedBy'])->latest()->paginate(100)
+    );
+}
 }
