@@ -75,7 +75,7 @@ export class ProductService {
   }
 
   updateProduct(id: number, data: FormData) {
-    return this.http.post<Product>(`${this.apiUrl}/admin/products/${id}?_method=PUT`, data);
+    return this.http.post<Product>(`${this.apiUrl}/admin/products/${id}/update`, data);
   }
 
   deleteProduct(id: number) {

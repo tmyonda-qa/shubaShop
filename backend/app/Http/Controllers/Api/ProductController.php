@@ -59,14 +59,14 @@ class ProductController extends Controller
             'images.*' => 'image|max:5120',
         ]);
 
-       $product = Product::create(array_merge(
-           $request->only(['category_id', 'name', 'article', 'description', 'price', 'fur_type', 'hood', 'fastener', 'length', 'type']),
-           [
-               'is_active' => $request->boolean('is_active', true),
-               'created_by' => $request->user()->id,
-               'updated_by' => $request->user()->id,
-           ]
-       ));
+        $product = Product::create(array_merge(
+            $request->only(['category_id', 'name', 'article', 'description', 'price', 'fur_type', 'hood', 'fastener', 'length', 'type']),
+            [
+                'is_active' => $request->boolean('is_active', true),
+                'created_by' => $request->user()->id,
+                'updated_by' => $request->user()->id,
+            ]
+        ));
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {
@@ -97,13 +97,16 @@ class ProductController extends Controller
             'name' => 'sometimes|string|max:255',
             'article' => 'sometimes|string|unique:products,article,' . $product->id,
             'price' => 'sometimes|numeric|min:0',
-            'is_active' => $request->boolean('is_active', true)
         ]);
 
-        $product->update(array_merge(
-            $request->only(['category_id', 'name', 'article', 'description', 'price', 'fur_type', 'hood', 'fastener', 'length', 'type', 'is_active']),
-            ['updated_by' => $request->user()->id]
-        ));
+        $data = $request->only([
+            'category_id', 'name', 'article', 'description',
+            'price', 'fur_type', 'hood', 'fastener', 'length', 'type',
+        ]);
+        $data['is_active'] = $request->boolean('is_active');
+        $data['updated_by'] = $request->user()->id;
+
+        $product->update($data);
 
         if ($request->hasFile('images')) {
             foreach ($request->file('images') as $index => $image) {

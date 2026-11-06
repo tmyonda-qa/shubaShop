@@ -34,6 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // Будь-який адмін
     Route::middleware('admin')->group(function () {
         Route::apiResource('admin/categories', CategoryController::class)->except(['index', 'show']);
+        Route::post('admin/products/{product}/update', [ProductController::class, 'update']);
         Route::apiResource('admin/products', ProductController::class)->except(['index', 'show']);
         Route::get('admin/orders', [OrderController::class, 'index']);
         Route::patch('admin/orders/{order}', [OrderController::class, 'update']);
